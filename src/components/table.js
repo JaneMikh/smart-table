@@ -11,8 +11,6 @@ export function initTable(settings, onAction) {
     const {tableTemplate, rowTemplate, before, after} = settings;
     const root = cloneTemplate(tableTemplate);
 
-    // @todo: #1.2 —  вывести дополнительные шаблоны до и после таблицы
-
     //Добавляем шаблон ДО таблицы
     before.reverse().forEach(itemId => {
         root[itemId] = cloneTemplate(itemId);
@@ -28,7 +26,7 @@ export function initTable(settings, onAction) {
         root.container.append(root[itemId].container);
     });
 
-    // @todo: #1.3 —  обработать события и вызвать onAction()
+    //Обработка событий и вызов onAction()
     root.container.addEventListener('change', () => onAction());
     root.container.addEventListener('reset', () => setTimeout(onAction));
     root.container.addEventListener('submit', (e) => {
@@ -37,7 +35,7 @@ export function initTable(settings, onAction) {
     });
 
     const render = (data) => {
-        // @todo: #1.1 — преобразовать данные в массив строк на основе шаблона rowTemplate
+        //Преобразование данных в массив строк на основе шаблона rowTemplate
         const nextRows = data.map(item => {
 
             //Получаем клонированный шаблон строки
